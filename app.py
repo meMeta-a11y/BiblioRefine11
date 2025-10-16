@@ -630,7 +630,7 @@ if st.button("Load & prepare (limit to 10k)"):
                 merged[c] = pd.NA
         # dedupe prefer DOI then title+year
         merged['title_key'] = merged.apply(lambda r: title_key(r.get('TI'), r.get('PY')), axis=1)
-        if 'DI' in merged.columns:
+if 'DI' in merged.columns:
     merged = merged.assign(_missing_doi=merged['DI'].isna().astype(int))
     merged = merged.sort_values(by='_missing_doi').drop(columns=['_missing_doi'])
         merged = merged.drop_duplicates(subset=['DI'], keep='first')
